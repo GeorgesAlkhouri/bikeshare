@@ -12,8 +12,13 @@ URL = 'https://archive.ics.uci.edu/ml/machine-learning-databases/' \
     '00275/Bike-Sharing-Dataset.zip'
 
 
-def get_raw_dataset(input_filepath):
-    df = pd.read_csv(os.path.join(input_filepath, 'hour.csv'))
+def get_raw_dataset(input_filepath, file_name='hour.csv'):
+
+    raw_df_path = os.path.join(input_filepath, file_name)
+
+    assert os.path.isfile(raw_df_path), 'File %s not found in %s' % (file_name, input_filepath)
+
+    df = pd.read_csv(raw_df_path)
     return df
 
 

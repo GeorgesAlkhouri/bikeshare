@@ -3,6 +3,8 @@
 jupyter
 pandas
 autopep8
+numpy
+seaborn
 
 # external requirements
 click
