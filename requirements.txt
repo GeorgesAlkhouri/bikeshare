@@ -1,5 +1,6 @@
 # local package
 -e .
+jupyter
 
 # external requirements
 click
