@@ -1,6 +1,8 @@
 # local package
 -e .
 jupyter
+pandas
+autopep8
 
 # external requirements
 click
