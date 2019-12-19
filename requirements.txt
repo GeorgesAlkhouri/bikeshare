@@ -5,6 +5,8 @@ pandas
 autopep8
 numpy
 seaborn
+tox
+pytest
 
 # external requirements
 click
