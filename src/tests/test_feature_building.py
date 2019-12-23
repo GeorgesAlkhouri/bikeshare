@@ -1,11 +1,13 @@
 import pytest
 import pandas as pd
+import os
 from src.features.build_features import cast_column_type, drop_columns
 
 
 @pytest.fixture
 def dataframe():
-    df = pd.read_csv('src/tests/data/head_hour.csv')
+    test_data_path = os.path.join(os.path.dirname(__file__), 'data', 'head_hour.csv')
+    df = pd.read_csv(test_data_path)
     assert df.season.dtype == 'int'
     assert df.hr.dtype == 'int'
     assert df.mnth.dtype == 'int'
