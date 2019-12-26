@@ -45,3 +45,15 @@ def test_drop_columns(dataframe):
     assert 'atemp' in df
     assert 'hum' in df
     assert 'windspeed' in df
+
+
+def test_outlier_removal():
+    ...
+
+
+def test_log_scale():
+    ...
+
+
+def test_clean_windspeed():
+    ...
