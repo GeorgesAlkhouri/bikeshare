@@ -10,11 +10,19 @@ class Config():
 
     @property
     def k_folds(self):
-        return int(os.getenv('K_FOLDS', 5))
+        return int(os.getenv('K_FOLDS', 10))
 
     @property
     def pipline_fnt(self):
         return os.getenv('PIPELINE_FNT', 'build_sklearn_pipline')
+
+    @property
+    def data_url(self):
+        return os.getenv(
+            'URL',
+            'https://archive.ics.uci.edu/ml/machine-learning-databases/'
+            '00275/Bike-Sharing-Dataset.zip'
+        )
 
     def __str__(self):
         return 'seed: %s, k_folds: %s, pipline_fnt: %s' % \
