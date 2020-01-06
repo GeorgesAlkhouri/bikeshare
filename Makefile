@@ -20,6 +20,10 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+## Run tests in different pyhton envs
+tox:
+	tox
+
 ## Pytest
 test:
 	$(PYTHON_INTERPRETER) -m pytest src/tests/
@@ -31,7 +35,7 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw
 
 
 train: data
@@ -64,7 +68,7 @@ else
 	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
 	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
 	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER)"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
+	@echo ">>> New virtualenv created. Source /usr/local/bin/virtualenvwrapper.sh\nActivate with:\nworkon $(PROJECT_NAME)"
 endif
 
 ## Test python environment is setup correctly
