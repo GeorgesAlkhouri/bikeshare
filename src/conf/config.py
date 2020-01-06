@@ -24,6 +24,18 @@ class Config():
 DEFAULT = Config()
 
 
+def set_global_seed(seed=None):
+
+    import numpy as np
+    import random as rd
+
+    if not seed:
+        seed = DEFAULT.seed
+
+    np.random.seed(seed)
+    rd.seed(seed)
+
+
 def load_file(path):
 
     if not os.path.isfile(path):

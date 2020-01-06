@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 import os
-from src.features.build_features import cast_column_type, drop_columns
+from src.features.build_features import cast_column_type, drop_columns, build_sklearn_pipline
 
 
 @pytest.fixture
@@ -45,6 +45,12 @@ def test_drop_columns(dataframe):
     assert 'atemp' in df
     assert 'hum' in df
     assert 'windspeed' in df
+
+
+def test_build_sklearn_pipeline(dataframe):
+    _, _, model = build_sklearn_pipline(dataframe)
+    assert hasattr(model, 'predict')
+    assert hasattr(model, 'fit')
 
 
 def test_outlier_removal():
