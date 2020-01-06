@@ -13,6 +13,10 @@ def rmsle(y, pred):
     return np.sqrt(mean_squared_log_error(np.exp(y), np.exp(pred)))
 
 
+def mean_absolute_deviation(x):
+    return np.sum(np.abs(x - np.mean(x))) / np.size(x)
+
+
 def train(model, X, y, error_fnt, split_ration=.8, **kwargs):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=split_ration)
@@ -43,7 +47,7 @@ def cross_val_cli(input_filepath):
     pipline_build_fnt = getattr(build_features, config.pipline_fnt)
     X, y, pipeline = pipline_build_fnt(df)
 
-    print('Doing corss validation...')
+    print('Doing cross validation...')
     result = cross_val(pipeline, X, y, rmsle, config.k_folds, return_estimator=True,
                        return_train_score=True,  n_jobs=-1)
     print(np.mean(result['test_score']), result['test_score'], result['train_score'])
