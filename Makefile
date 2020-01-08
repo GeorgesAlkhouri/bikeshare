@@ -37,10 +37,11 @@ requirements: test_environment
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw
 
-
+## Train a model with a 60 / 40 split
 train: data
 	$(PYTHON_INTERPRETER) src/models/train_model.py train-cli data/raw/
 
+## Do a 10-fold cross-validation
 cross_val: data
 	$(PYTHON_INTERPRETER) src/models/train_model.py cross-val-cli data/raw/
 
