@@ -8,6 +8,7 @@ seaborn
 tox
 pytest
 scikit-learn
+pyspark
 
 # external requirements
 click

@@ -1,7 +1,7 @@
 bikeshare
 ==============================
 
-A short description of the project.
+To see all available commands type `make help`
 
 Project Organization
 ------------
