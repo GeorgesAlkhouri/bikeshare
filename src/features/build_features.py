@@ -75,16 +75,15 @@ def build_sklearn_pipline(df, **kwargs):
 
     """
     pre_transformer = ColumnTransformer(
-        transformers=[('cat_features', OneHotEncoder(handle_unknown='ignore'), ['season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit']),
-                      ('min_max_features', MinMaxScaler(), ['temp', 'hum', 'windspeed'])],
+        transformers=[('min_max_features', MinMaxScaler(), ['temp', 'hum', 'windspeed',
+                                                            'season', 'yr', 'mnth', 'hr',
+                                                            'holiday', 'weekday', 'workingday', 'weathersit'])],
         remainder='drop')
-    sparse_transformer = FunctionTransformer(
-        lambda x: x.todense(), accept_sparse=True)
     regressor = GradientBoostingRegressor()
-    pipeline = make_pipeline(pre_transformer, sparse_transformer, regressor)
+    pipeline = make_pipeline(pre_transformer, regressor)
     pipeline.set_params(gradientboostingregressor__n_estimators=4000,
                         gradientboostingregressor__alpha=0.01)
 
     y = df['cnt']
-    X = df.drop(['cnt'], axis=1)
+    X = df.drop(['cnt', 'casual', 'registered'], axis=1)
     return X, y, pipeline

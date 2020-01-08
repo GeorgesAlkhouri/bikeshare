@@ -25,7 +25,10 @@ def train(model, X, y, error_fnt, split_ration=.8, **kwargs):
     preds = model.predict(X_test)
     score = error_fnt(np.log(y_test), preds)
 
-    return model, score
+    return (model,
+            mean_absolute_deviation(y_test),
+            mean_absolute_deviation(np.exp(preds)),
+            score)
 
 
 def cross_val(model, X, y, error_fnt, k_folds, greater_is_better=True, **kwargs):
@@ -63,8 +66,10 @@ def train_cli(input_filepath):
     X, y, pipeline = pipline_build_fnt(df)
 
     print('Doing training...')
-    model, score = train(pipeline, X, y, rmsle)
+    model, mad_test, mad_pred, score = train(pipeline, X, y, rmsle)
     print('RMSLE score:', score)
+    print('MAD test:', mad_test)
+    print('MAD pred:', mad_pred)
 
 
 if __name__ == '__main__':
