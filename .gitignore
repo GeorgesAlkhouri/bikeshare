@@ -78,6 +78,7 @@ target/
 # exclude data from source control by default
 !/data/
 /data/*
+!/data/raw/
 /data/raw/*
 !/data/raw/.gitkeep
 
